@@ -14,6 +14,7 @@ type Page struct {
 
 func (p *Page) save() error {
     filename := p.Title + ".txt"
+    // 3rd paramater 0600 indicates UNIX file permissions
     return ioutil.WriteFile(filename, p.Body, 0600)
 }
 
