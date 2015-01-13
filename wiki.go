@@ -32,6 +32,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
+    //Get everything after /view/
     title := r.URL.Path[len("/view/"):]
     p, err := loadPage(title)
     if err != nil {
@@ -43,6 +44,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
+    // Get everything after /edit/
     title := r.URL.Path[len("/edit/"):]
     p, err := loadPage(title)
     if err != nil {
