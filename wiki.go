@@ -38,15 +38,16 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
         // func Error(w ResponseWriter, error string, code int)
         http.Error(w, err.Error(), http.StatusInternalServerError)
     }
-    t.Execute(w, p)
+    
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-    Get everything after /view/
+    // Get everything after /view/
     title := r.URL.Path[len("/view/"):]
     p, err := loadPage(title)
     if err != nil {
-        fmt.Fprintf(w, "<h1>Error</h1>")
+        // No template redirecting to edit page in order to create
+        http.Redirect(w, r, "/edit/" + title, http.StatusFound)
     } else {
        renderTemplate(w, "view_page.html", p)    
    }
@@ -69,7 +70,7 @@ func saveHandler(w http.ResponseWriter, r *http.Request) {
     body := r.FormValue("body")
     p := &Page{Title: title, Body: []byte(body)}
     p.save()
-    http.Redirect(w, r, "/view/"+title, http.StatusFound)
+    http.Redirect(w, r, "/view/" + title, http.StatusFound)
 }
 
 
