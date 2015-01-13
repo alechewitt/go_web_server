@@ -35,13 +35,14 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
     }
     err = t.Execute(w, p)
     if err != nil {
+        // func Error(w ResponseWriter, error string, code int)
         http.Error(w, err.Error(), http.StatusInternalServerError)
     }
     t.Execute(w, p)
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
-    //Get everything after /view/
+    Get everything after /view/
     title := r.URL.Path[len("/view/"):]
     p, err := loadPage(title)
     if err != nil {
