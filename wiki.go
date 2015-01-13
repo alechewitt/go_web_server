@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-	"io/ioutil"
+    "io/ioutil"
     "net/http"
     "html/template"
 )
@@ -37,8 +37,8 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
     if err != nil {
         fmt.Fprintf(w, "<h1>Error</h1>")
     } else {
-         renderTemplate(w, "view_page.html", p)    
-    }
+       renderTemplate(w, "view_page.html", p)    
+   }
 }
 
 
